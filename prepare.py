@@ -56,6 +56,7 @@ def prepare_readme_data(df, column):
 
     df = df.dropna()
     df = df[df['language'].map(df['language'].value_counts()) >= 5]
+    df = df[df.language != 'Jupyter Notebook']
     clean_tokens = (df[column].apply(clean_html)
                               .apply(basic_clean)
                               .apply(tokenize)
