@@ -55,8 +55,6 @@ def remove_stopwords(string, extra_words=[], exclude_words=[]):
 def prepare_readme_data(df, column):
 
     df = df.dropna()
-    df = df[df['language'].map(df['language'].value_counts()) >= 5]
-    df = df[df.language != 'Jupyter Notebook']
     clean_tokens = (df[column].apply(clean_html)
                               .apply(basic_clean)
                               .apply(tokenize)
@@ -68,8 +66,14 @@ def prepare_readme_data(df, column):
     
     df['stemmed'] = clean_tokens.apply(stem)
     df['lemmatized'] = clean_tokens.apply(lemmatize)
+    df['total_words'] = df['lemmatized'].str.split().str.len()
+    df = df[df.total_words > 9]
     return df
 
+# def wrangle_data():
+#     data = pd.read_json('data.json')
+#     return prepare_readme_data(data, 'readme_contents')
+
 def wrangle_data():
-    data = pd.read_json('data.json')
+    data = pd.read_csv('new_data.csv')
     return prepare_readme_data(data, 'readme_contents')
