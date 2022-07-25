@@ -1,6 +1,9 @@
 
 import pandas as pd
 
+from sklearn.model_selection import train_test_split
+
+
 import unicodedata
 import re
 import json
@@ -77,3 +80,17 @@ def prepare_readme_data(df, column):
 def wrangle_data():
     data = pd.read_csv('new_data.csv')
     return prepare_readme_data(data, 'readme_contents')
+
+def split_df(df):
+    '''
+    This function performs split on repo data, stratifying on languages.
+    Returns train, validate, and test dfs.
+    '''
+    train_validate, test = train_test_split(df, test_size=.2, 
+                                        random_state=123, 
+                                        stratify=df.language)
+    train, validate = train_test_split(train_validate, test_size=.3, 
+                                   random_state=123, 
+                                   stratify=train_validate.language)
+    return train, validate, test
+
