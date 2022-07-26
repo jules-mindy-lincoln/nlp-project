@@ -88,13 +88,16 @@ def make_df_freqs(JavaScript_words, HTML_words, Python_words, Java_words, R_word
     return word_counts
 
 def plot_bins(df):
+    #plt.figure(figsize=(10,8))
     conditions = [(df.total_words > 171),
     (df.total_words >= 51) & (df.total_words <= 171),
               (df.total_words < 51)]
     choices = ['high_count', 'med_count', 'low_count']
     df['count_bin'] = np.select(conditions, choices)
     df_plot = df.groupby(['language', 'count_bin']).size().reset_index().pivot(columns='count_bin', index='language', values=0)
-    df_plot.plot(kind='bar')
+    df_plot.plot(kind='bar',
+                 figsize = (10, 8))
+    plt.xlabel('Language')
     plt.title('Programming Languages with Counts Bins')
 
 def stats_test_1(word_counts):
@@ -227,7 +230,7 @@ def plot_word_perc(word_counts):
     plt.rcParams["figure.figsize"] = (10,8)
     word_perc_T.plot(kind = 'barh', stacked=True)
 
-    plt.title('Proportion of languages for the 20 most common words')
+    plt.title('Proportion of Languages for the 20 Most Common Words')
     plt.show()
 
 
@@ -284,7 +287,7 @@ def plot_bigrams_10(word_perc_bigrams_T):
 
     plt.rcParams["figure.figsize"] = (10,8)
     word_perc_bigrams_T.plot(kind = 'barh', stacked=True)
-    plt.title('Proportion of languages for the 20 most common bigrams', size=20)
+    plt.title('Proportion of Languages for the 20 Most Common Bigrams', size=20)
     plt.rcParams["figure.figsize"] = (10,8)
     langs_high_tris.plot(kind = 'barh', stacked=True)
     plt.title('High Frequency Bigrams of Languages Compared', size= 20)
@@ -396,5 +399,28 @@ def split_data(df):
     train, validate = train_test_split(train_validate, test_size = .3, random_state = 123, stratify = train_validate.language)
     return train, validate, test
 
+def establish_baseline():
+    df = prepare.wrangle_data()
+    langs = pd.concat([df.language.value_counts(),
+                    df.language.value_counts(normalize=True)], axis=1)
+    langs
+    langs.columns = ['counts', 'percent']
+    #establish baseline
+    baseline = langs.loc['JavaScript', 'percent']
 
+    print(f'Baseline is: ',  f'{baseline * 100:.2f}%')
+    
+def visuals():
+    df = prepare.wrangle_data()
+    sns.catplot(data = df,
+           x = 'total_words',
+           y = 'language',
+           kind = 'violin',
+           height = 8,
+           aspect = 10/8)
+    sns.despine(left = True, bottom = True)   
+    plt.ylabel('Language')
+    plt.xlabel('Total Words')
+    plt.title('Word Counts per Programming Language', size=20)
+    
    
