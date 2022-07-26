@@ -13,7 +13,7 @@ Therefore, the predictive model aims to predict the programming languages of rep
 
 ## Link to presentation slides:
 
-https://www.canva.com/design/DAFHK3Si990/kUSxdA09Nt2x506IJYaylA/edit?utm_content=DAFHK3Si990&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+https://www.canva.com/design/DAFHK3Si990/7XEuSx53FcHB61GVsJOrpg/view?utm_content=DAFHK3Si990&utm_campaign=de
 
 ## Executive Summary
 For this project our team chose to focus on the topic of mental health, and formed an initial hypothesis that due to the academic quantitative analysis of mental health, that certain languages, such as R, would be robust in the scrapped data.
