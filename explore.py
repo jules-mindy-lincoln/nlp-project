@@ -133,6 +133,23 @@ def stats_test_2(word_counts):
     else:
         print('Fail to reject the null hypothesis.')
 
+def stats_test_2_t(word_counts):
+    #set alpha
+    α = 0.05
+
+    #perform test
+    t, p = stats.ttest_ind(word_counts.JavaScript, word_counts.Python, equal_var = False)
+
+    #print p-value
+    print(f'P Value: {p/2:.3f}')
+
+    #evaluate if mean of the word counts associated w/ JavaScript is significantly higher than the mean 
+    # of the mean word counts associated with Python, is p/2 < a and t > 0?
+    if p/2 < α and t > 0:
+        print('Reject the null hypothesis.')
+    else:
+        print('Fail to reject the null hypothesis.')
+
 def stats_test_3(word_counts):
 
     #test for equal variance 
