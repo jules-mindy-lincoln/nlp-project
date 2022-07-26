@@ -11,10 +11,14 @@ The goal of this project is to use Natural Language Processing in order to build
 The five programming languages in data acquired for this project are: JavaScript, Python, HTML, Java, and R which are the most common languages in GitHub repositories on the subject matter of mental health.
 Therefore, the predictive model aims to predict the programming languages of repositories that were written in one of these five languages.
 
+## Link to presentation slides:
+
+https://www.canva.com/design/DAFHK3Si990/kUSxdA09Nt2x506IJYaylA/edit?utm_content=DAFHK3Si990&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
 ## Executive Summary
 For this project our team chose to focus on the topic of mental health, and formed an initial hypothesis that due to the academic quantitative analysis of mental health, that certain languages, such as R, would be robust in the scrapped data.
 After some initial exploration of Github, we chose Python, Java, R, HTML, and JavaScript as the only languages of focus to build the predictive model. After acquisition and preparation, we utilized 1627 records in data exploration and modeling. The Baseline language is JavaScript which accounted for 37% of our corpus
-The models used were a TFIDF and Count Vectorizer Logistic Regression and a TFIDF and Count Vectorizer Decision Tree model. The best performing model is the Count Vectorized Decision Tree which has slightly over 50% accuracy (~15% improvement from baseline).
+The models used were a TFIDF and Count Vectorizer Logistic Regression and a TFIDF and Count Vectorizer Decision Tree model. The best performing model is the Count Vectorized Decision Tree which has slightly over 50% accuracy (improvement of 48% from baseline).
 
 ## Initial Thoughts
 - Do certain languages have a higher average readme word count than others?
@@ -84,7 +88,7 @@ Can small groups of sequential words (bigrams and trigrams) in readmes be predic
 Through modeling, we accomplished the following:
 
 Our was able to build, fit, and train a Count Vectorizer Decision Tree model which is able to predict the programming language of GitHub readme files on the topic of mental health with ~ 50% accuracy.
-With a 15% improvement from baseline seen on all 3 subsets (train, validate, and test), we are confident that this model's accuracy is represented correctly and we can recommend utilization of this model at this time.
+With a 48% improvement from baseline seen on all 3 subsets (train, validate, and test), we are confident that this model's accuracy is represented correctly and we can recommend utilization of this model at this time.
 However, we do believe that with more time and resources, we could improve this model's accuracy.
 
 Our next steps include the following:
